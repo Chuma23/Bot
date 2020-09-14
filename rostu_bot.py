@@ -80,3 +80,34 @@ bot.polling(none_stop=True, interval=0)
 
 
 #1317807668:AAHcNPFcffisqpq0evZtgX-M0in5bIc0uzs
+
+'''
+import requests
+from bs4 import BeautifulSoup
+
+datas = {
+	'os_username':'m.chumakov',
+	'os_password':'sZcu3#4'
+}
+
+#login = input('Inmput login: ')
+#password = input('Inmput password: ')
+
+#datas['os_username'] = login
+#datas['os_password'] = password
+
+sup = input('Введите номер заявки:')
+url = 'http://jira.rostu-comp.ru:8080/browse/SUP-'+sup
+
+s = requests.Session()
+loging = s.post(url, data = datas)
+result = s.get(url)
+if result.status_code==200:
+	print('Success!')
+	soup = BeautifulSoup(loging.text, 'lxml')
+	print(soup.find(id='summary-val').text)
+	print(soup.find(id='status-val').text.)
+	print(soup.find("span", { "class" : "user-hover"}).text.strip())
+else:
+	print('Такой заявки не существует')
+'''
